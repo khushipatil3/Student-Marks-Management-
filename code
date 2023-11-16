@@ -1,0 +1,68 @@
+// C++ program to store information of 10 students using class and vector 
+#include <iostream>
+#include <vector>
+using namespace std;
+class Student {
+ private:
+ string name; // student name
+ int rollNo; // student roll number
+ vector<int> marks; // student marks in different subjects
+ float avg; // student average marks
+ public:
+ void getDetails(); // member function to get student details
+ void putDetails(); // member function to print student details
+ void calculateAvg(); // member function to calculate average marks 
+};
+void Student::getDetails()
+{
+ cout << "Enter name : " ; 
+ cin >> name;
+ cout << "Enter roll number: ";
+ cin >> rollNo;
+ cout << "Enter marks in 5 subjects: ";
+ for (int i = 0; i < 5; i++) {
+ int m;
+ cin >> m;
+ marks.push_back(m); // add marks to the vector
+ }
+}
+void Student::putDetails() {
+ cout << "Student details:\n";
+ cout << "Name: " << name << "\n";
+cout << "Roll Number: " << rollNo << "\n";
+ cout << "Marks: ";
+ for (int i = 0; i < marks.size(); i++) {
+ cout << marks[i] << " ";
+ }
+ cout << "\n";
+ cout << "Average: " << avg << "\n";
+}
+void Student::calculateAvg() {
+ int sum = 0;
+ for (int i = 0; i < marks.size(); i++) {
+ sum += marks[i]; // add all marks
+ }
+ avg = (float)sum / marks.size(); // calculate average
+}
+int main() {
+ vector<Student> students; // vector of Student objects
+ int n; // number of students 
+ cout << "Enter number of students: ";
+ cin >> n;
+ 
+ for (int i = 0; i < n; i++) {
+ Student s; // create a Student object
+ s.getDetails(); // get details from user
+ s.calculateAvg(); // calculate average marks
+ students.push_back(s); // add object to the vector
+ }
+ 
+ cout << "\n";
+ 
+ for (int i = 0; i < n; i++) {
+ students[i].putDetails(); // print details of each student
+ cout << "\n";
+ }
+ 
+ return 0;
+} 
